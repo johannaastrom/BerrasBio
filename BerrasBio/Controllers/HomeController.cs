@@ -24,7 +24,8 @@ namespace BerrasBio.Controllers
 				using (var reader = cmd.ExecuteReader())
 				{
 					if (!reader.Read()){
-						//list.Add(new Film);
+						//print films 
+						Console.WriteLine("Hallå");
 					}
 				}
 			}

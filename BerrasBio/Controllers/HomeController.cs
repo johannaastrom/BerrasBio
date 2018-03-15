@@ -5,14 +5,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BerrasBio.Models;
+using System.Data.SqlClient;
 
 namespace BerrasBio.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
     {
-        public IActionResult Index()
+		public const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BerrasBio;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+		public IActionResult Index()
         {
-            return View();
+			using (var conn = new SqlConnection(connectionString))
+			using (var cmd = conn.CreateCommand())
+			{
+				conn.Open();
+				cmd.CommandText = "SELECT FilmTitel, Tid FROM Filmer";
+				/*cmd.Parameters.AddWithValue("@id", id);*/
+				using (var reader = cmd.ExecuteReader())
+				{
+					if (!reader.Read()){
+						//list.Add(new Film);
+					}
+				}
+			}
+
+			return View();
         }
 
         public IActionResult About()

@@ -6,26 +6,46 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BerrasBio.Models;
 using System.Data.SqlClient;
+using BerrasBio.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BerrasBio.Controllers
 {
 	public class HomeController : Controller
     {
-		public IActionResult Index()
+		private readonly FilmContext _context;
+
+		public HomeController(FilmContext context)
+		{
+			_context = context;
+		}
+
+		public IActionResult Index() 
         {
 			return View();
         }
 
-        public IActionResult About()
+        public IActionResult Boka() 
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Book your tickets today.";
 
-            return View();
+			var filmLista = _context.Film.ToList(); //Invalid object name 'Film' ?????????
+			var biljettLista = _context.Biljett.ToList(); // 'Invalid column name 'FilmId'.' koppla ihop FK rätt!!!
+
+			ViewData["filmer"] = filmLista;
+			ViewData["biljetter"] = biljettLista;
+
+			BokaViewModel model = new BokaViewModel();
+			model.filmLista = filmLista;
+			model.biljettLista = biljettLista; 
+
+			return View(model);
         }
 
-        public IActionResult Contact()
+        public IActionResult Trailers()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Watch our trailers here.";
 
             return View();
         }

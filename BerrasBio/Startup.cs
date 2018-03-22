@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BerrasBio.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,6 +24,8 @@ namespace BerrasBio
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+			string cs = Configuration.GetConnectionString("FilmDbCS");
+			services.AddDbContext<FilmContext>(options => options.UseSqlServer(cs));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

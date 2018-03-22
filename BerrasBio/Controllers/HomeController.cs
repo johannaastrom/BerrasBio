@@ -30,7 +30,7 @@ namespace BerrasBio.Controllers
         {
             ViewData["Message"] = "Book your tickets today.";
 
-			var filmLista = _context.Film.ToList(); //Invalid object name 'Film' ???????
+			var filmLista = _context.Film.ToList(); 
 			var biljettLista = _context.Biljett.ToList(); // 'Invalid column name 'FilmId'.' koppla ihop FK rätt!!!
 
 			ViewData["filmer"] = filmLista;

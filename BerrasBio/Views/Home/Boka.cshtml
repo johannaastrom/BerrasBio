@@ -12,21 +12,22 @@
 
         <ul>
             @foreach (var x in Model.filmLista)
-            {
-                <li>
-                    <input type="radio" value="10.00" id="level-1" name="price-level" data-price-id="1">
-                    @x.FilmTitel @x.Tid
-                </li>
-            }
+    {
+        <li>
+            <input type="radio" value="10.00" id="level-1" name="price-level" data-price-id="1">
+            @x.FilmTitel @x.Tid
+
+        </li>
+}
         </ul>
 
     </div>
     <div class="col-md-3">
         <h2>Välj antal Biljetter</h2>
-        
-            <input type="text" name="IP" id="IP" />
 
-            <ul></ul>
+        <input type="text" name="IP" id="IP" />
+
+        <ul></ul>
     </div>
     <div class="col-md-3">
         <h2>Antal lediga platser</h2>
@@ -49,8 +50,10 @@
         @using (Html.BeginForm("Boka", "Confirmation", FormMethod.Post)){
 
         <input type="submit" value="Submit" />
-
+        
           }
+
+        <button type="button" onclick="location.href='@Url.Action("Confirmation", "Account")'">CLICK ME</button>
 
     </div>
 </div>

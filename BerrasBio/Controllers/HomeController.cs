@@ -54,7 +54,10 @@ namespace BerrasBio.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
+		public ActionResult Confirmation()
+		{
+			return View();
+		}
 		//public ActionResult Submit()
 		//{
 		//	string output = "Nu har du bokat biljetter.";

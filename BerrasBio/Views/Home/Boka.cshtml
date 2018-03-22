@@ -22,13 +22,14 @@
 
     </div>
     <div class="col-md-3">
-        <h2>Antal Biljetter</h2>
-        <ul>
+        <h2>Välj antal Biljetter</h2>
+        
             <input type="text" name="IP" id="IP" />
-        </ul>
+
+            <ul></ul>
     </div>
     <div class="col-md-3">
-        <h2>Antal lediga biljetter</h2>
+        <h2>Antal lediga platser</h2>
         <ul>
             @foreach(var b in Model.biljettLista)
             {
@@ -45,5 +46,13 @@
         <h2>Bekräfta</h2>
         <input type="submit" value="Boka" class="btn btn-default" />
 
+        @using (Html.BeginForm("Boka", "Confirmation", FormMethod.Post)){
+
+        <input type="submit" value="Submit" />
+
+          }
+
     </div>
 </div>
+
+<div><p>Här visas din bekräftelse</p></div>

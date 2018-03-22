@@ -28,7 +28,7 @@ namespace BerrasBio.Controllers
 
         public IActionResult Boka() 
         {
-            ViewData["Message"] = "Book your tickets today.";
+            ViewData["Message"] = "Boka dina biljetter idag";
 
 			var filmLista = _context.Film.ToList(); 
 			var biljettLista = _context.Biljett.ToList(); // 'Invalid column name 'FilmId'.' koppla ihop FK rätt!!!
@@ -45,7 +45,7 @@ namespace BerrasBio.Controllers
 
         public IActionResult Trailers()
         {
-            ViewData["Message"] = "Watch our trailers here.";
+            ViewData["Message"] = "Se våra trailers här.";
 
             return View();
         }
@@ -54,5 +54,18 @@ namespace BerrasBio.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-    }
+
+		//public ActionResult Submit()
+		//{
+		//	string output = "Nu har du bokat biljetter.";
+		//	ViewData["output"] = output;
+
+		//	if (ModelState.IsValid)
+		//	{
+		//		//do something with account
+		//		return RedirectToAction("Index");
+		//	}
+		//	return View(output);
+		//}
+	}
 }

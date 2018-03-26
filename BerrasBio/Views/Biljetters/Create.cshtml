@@ -1,4 +1,4 @@
-﻿@model BerrasBio.Models.Biljetter
+﻿@model BerrasBio.Models.Biljett
 
 @{
     ViewData["Title"] = "Create";
@@ -13,9 +13,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="AntalBiljetter" class="control-label"></label>
-                <input asp-for="AntalBiljetter" class="form-control" />
-                <span asp-validation-for="AntalBiljetter" class="text-danger"></span>
+                <label asp-for="Bokad" class="control-label"></label>
+                <input asp-for="Bokad" class="form-control" />
+                <span asp-validation-for="Bokad" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

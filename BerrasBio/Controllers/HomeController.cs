@@ -31,14 +31,18 @@ namespace BerrasBio.Controllers
             ViewData["Message"] = "Boka dina biljetter idag";
 
 			var filmLista = _context.Film.ToList(); 
-			var biljettLista = _context.Biljett.ToList(); // 'Invalid column name 'FilmId'.' koppla ihop FK rätt!!!
+			var biljettLista = _context.Biljett.ToList();
 
-			ViewData["filmer"] = filmLista;
-			ViewData["biljetter"] = biljettLista;
+			//ViewData["filmer"] = filmLista;
+			//ViewData["biljetter"] = biljettLista;
 
 			BokaViewModel model = new BokaViewModel();
 			model.filmLista = filmLista;
-			model.biljettLista = biljettLista; 
+			model.biljettLista = biljettLista;
+
+			var linq = from b in biljettLista    // försök till att klumpa ihop filmId
+					   group b by b.FilmId into film
+					   select film;
 
 			return View(model);
         }

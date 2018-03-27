@@ -13,6 +13,6 @@ namespace BerrasBio.Models
 		public int SelectedFilmId { get; set; }
 
 		public int BokadePlatser { get; set; }
-		public int LedigaPlatser { get; set; }
+		public int AntalBiljetter { get; set; }
 	}
 }

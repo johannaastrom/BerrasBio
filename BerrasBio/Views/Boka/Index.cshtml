@@ -6,7 +6,7 @@
 
 <h3>@ViewData["Message"]</h3>
 
-@Html.BeginForm("Boka", "Boka", FormMethod.Post)
+@using (Html.BeginForm("Boka", "Boka", FormMethod.Post))
 {
 
 <div class="row">
@@ -26,21 +26,18 @@
         <div id="antal">
             <ul>
                 <li>
-                    @Html.DisplayFor(model => model.LedigaPlatser)
+                    @Html.DisplayFor(model => model.AntalBiljetter)
                 </li>
             </ul>
         </div>
-
-        @Model.BiljettLista.Count
 
     </div>
 
     <div class="col-md-3">
         <h2>Välj antal Biljetter</h2>
 
-        <select asp-for="LedigaPlatser" asp-items="@(new SelectList(Model.BiljettLista, "BiljettId", "BiljettId"))" ></select>
-
-        @*<input type="text" name="antalBiljetter" />*@
+        @*<select asp-for="LedigaPlatser" asp-items="@(new SelectList(Model.BiljettLista, "BiljettId", "BiljettId"))"></select>*@
+        <input asp-for="@Model.AntalBiljetter" />
 
     </div>
 
@@ -51,12 +48,13 @@
 
     </div>
 </div>
+}
 
 @section scripts {
     <script>
         function GetAntalBiljetter() {
   
-            var serviceURL = '/Boka/Boka/?id=';
+            var serviceURL = '/Boka/GetAntalLedigaBiljetter/?id=';
             var selectedId = $('#SelectedFilmId').val();
 
             $.ajax({
@@ -86,7 +84,7 @@
     </script>
 }
 
-}
+
 
 
 

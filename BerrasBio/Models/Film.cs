@@ -9,7 +9,8 @@ namespace BerrasBio.Models
 	{
 		public int FilmId { get; set; }
 		public string FilmTitel { get; set; }
-		public string Tid { get; set; }
+		//public string Tid { get; set; }
+		public int AntalBiljetter { get; set; }
 
 		public virtual ICollection<Biljett> Biljetter { get; set; }
 	}

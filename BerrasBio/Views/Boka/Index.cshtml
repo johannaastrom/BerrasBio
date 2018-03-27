@@ -1,0 +1,92 @@
+﻿@model BerrasBio.Models.BokaViewModel
+
+@{ ViewData["Title"] = "Boka"; }
+
+<img id="header" src="https://thislifeisacinema.files.wordpress.com/2012/04/film-header1.jpg" alt="ASP.NET" class="img-responsive" />
+
+<h3>@ViewData["Message"]</h3>
+
+@Html.BeginForm("Boka", "Boka", FormMethod.Post)
+{
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Filmer och tid</h2>
+
+        <ul>
+            <li>
+                <select asp-for="SelectedFilmId" asp-items="@(new SelectList(Model.FilmLista, "FilmId", "FilmTitel"))" onchange="GetAntalBiljetter()"></select>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="col-md-3">
+        <h2>Antal lediga platser</h2>
+        <div id="antal">
+            <ul>
+                <li>
+                    @Html.DisplayFor(model => model.LedigaPlatser)
+                </li>
+            </ul>
+        </div>
+
+        @Model.BiljettLista.Count
+
+    </div>
+
+    <div class="col-md-3">
+        <h2>Välj antal Biljetter</h2>
+
+        <select asp-for="LedigaPlatser" asp-items="@(new SelectList(Model.BiljettLista, "BiljettId", "BiljettId"))" ></select>
+
+        @*<input type="text" name="antalBiljetter" />*@
+
+    </div>
+
+    <div class="col-md-3">
+        <h2>Bekräfta</h2>
+
+        <input type="submit" value="Boka" class="btn btn-default" />
+
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function GetAntalBiljetter() {
+  
+            var serviceURL = '/Boka/Boka/?id=';
+            var selectedId = $('#SelectedFilmId').val();
+
+            $.ajax({
+                type: "POST",
+                url: serviceURL + selectedId,
+                data: "",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data) {
+                if(data == 'Felaktigt filmval') {
+                    alert('Felaktigt filmval')
+                }
+                else {
+                    $("#antal").html(data);
+                }
+            }
+
+            function errorFunc() {
+                alert('error');
+            }
+            
+        }
+    </script>
+}
+
+}
+
+
+

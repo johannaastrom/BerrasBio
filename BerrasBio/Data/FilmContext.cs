@@ -9,7 +9,7 @@ namespace BerrasBio.Data
 {
     public class FilmContext : DbContext
     {
-		public FilmContext(DbContextOptions<FilmContext> options) : base(options) { } //generisk??
+		public FilmContext(DbContextOptions<FilmContext> options) : base(options) { }
 
 		public DbSet <Film> Film { get; set; }
 		public DbSet <Biljett> Biljett { get; set; }
@@ -34,11 +34,11 @@ namespace BerrasBio.Data
 
 			var filmer = new Film[]
 			{
-			new Film{FilmTitel="Sagan om ringen",Tid="17:00" },
-			new Film{FilmTitel="Harry Potter",Tid="18:30" },
-			new Film{FilmTitel="The Notebook",Tid="19:00" },
-			new Film{FilmTitel="Ensam hemma 2",Tid="20:30" },
-			new Film{FilmTitel="Scary Movie",Tid="22:00" }
+			new Film{FilmTitel="Sagan om ringen 17:00"/*,Tid="17:00"*/ },
+			new Film{FilmTitel="Harry Potter 18:30"/*,Tid="18:30"*/ },
+			new Film{FilmTitel="The Notebook 19:00"/*,Tid="19:00"*/ },
+			new Film{FilmTitel="Ensam hemma 20:30"/*,Tid="20:30"*/ },
+			new Film{FilmTitel="Scary Movie 22:00"/*,Tid="22:00"*/ }
 			};
 			foreach (Film s in filmer)
 			{
@@ -52,9 +52,11 @@ namespace BerrasBio.Data
 			}
 
 			var biljetter = new Biljett();
-			
+
+			//Här skapas 50 obokade biljetter av varje FilmId
 			int maxBiljetter = 50;
-			for (int i = 0; i < maxBiljetter; i++){
+			for (int i = 0; i < maxBiljetter; i++)
+			{
 				context.Biljett.Add(new Biljett { FilmId = 1, Bokad = false });
 			}
 			for (int i = 0; i < maxBiljetter; i++)

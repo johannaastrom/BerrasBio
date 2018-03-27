@@ -26,23 +26,21 @@ namespace BerrasBio.Controllers
 			return View();
         }
 
-        public IActionResult Boka() 
+        public IActionResult Boka(int antalBiljetter) 
         {
             ViewData["Message"] = "Boka dina biljetter idag";
 
 			var filmLista = _context.Film.ToList(); 
 			var biljettLista = _context.Biljett.ToList();
 
-			//ViewData["filmer"] = filmLista;
-			//ViewData["biljetter"] = biljettLista;
-
 			BokaViewModel model = new BokaViewModel();
-			model.filmLista = filmLista;
-			model.biljettLista = biljettLista;
+			model.FilmLista = filmLista;
+			model.BiljettLista = biljettLista;
 
-			var linq = from b in biljettLista    // försök till att klumpa ihop filmId
-					   group b by b.FilmId into film
-					   select film;
+			//var LINQ = from b in biljettLista    //klumpa och sortera ihop filmId
+			//		   group b by b.FilmId into film
+			//		   orderby film ascending
+			//		   select film;
 
 			return View(model);
         }
@@ -62,6 +60,19 @@ namespace BerrasBio.Controllers
 		{
 			return View();
 		}
+
+		[HttpGet]
+		public ActionResult Create(Biljett biljettId)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.Biljett.Add(biljettId);
+				_context.SaveChanges();
+				//return View("Boka", new { id = biljettId.Bokad });
+			}
+			return View(biljettId);
+		}
+
 		//public ActionResult Submit()
 		//{
 		//	string output = "Nu har du bokat biljetter.";

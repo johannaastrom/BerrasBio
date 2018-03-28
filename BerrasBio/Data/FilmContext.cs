@@ -27,18 +27,18 @@ namespace BerrasBio.Data
 		{
 			context.Database.EnsureCreated();
 			
-			if (context.Film.Any()) // Look if there are any films in database
+			if (context.Film.Any())
 			{
-				return;   // DB has been seeded
+				return;
 			}
 
 			var filmer = new Film[]
 			{
-			new Film{FilmTitel="Sagan om ringen 17:00"/*,Tid="17:00"*/ },
-			new Film{FilmTitel="Harry Potter 18:30"/*,Tid="18:30"*/ },
-			new Film{FilmTitel="The Notebook 19:00"/*,Tid="19:00"*/ },
-			new Film{FilmTitel="Ensam hemma 20:30"/*,Tid="20:30"*/ },
-			new Film{FilmTitel="Scary Movie 22:00"/*,Tid="22:00"*/ }
+			new Film{FilmTitel="Sagan om ringen 17:00" },
+			new Film{FilmTitel="Harry Potter 18:30" },
+			new Film{FilmTitel="The Notebook 19:00" },
+			new Film{FilmTitel="Ensam hemma 20:30" },
+			new Film{FilmTitel="Scary Movie 22:00" }
 			};
 			foreach (Film s in filmer)
 			{
@@ -46,14 +46,13 @@ namespace BerrasBio.Data
 			}
 			context.SaveChanges();
 
-			if (context.Biljett.Any()) // Look if there are any tickets in database
+			if (context.Biljett.Any())
 			{
-				return;   // DB has been seeded
+				return; 
 			}
 
 			var biljetter = new Biljett();
 
-			//Här skapas 50 obokade biljetter av varje FilmId
 			int maxBiljetter = 50;
 			for (int i = 0; i < maxBiljetter; i++)
 			{

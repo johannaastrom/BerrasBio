@@ -15,8 +15,9 @@
     margin: 15px;
 }
 
-ul {
-	list-style: none;
+#header{
+	position: fixed;
+	left: 0px;
 }
 
 /* Hide/rearrange for smaller screens */

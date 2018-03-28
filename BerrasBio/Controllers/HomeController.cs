@@ -28,7 +28,7 @@ namespace BerrasBio.Controllers
 
         public IActionResult Boka(int antalBiljetter) 
         {
-            ViewData["Message"] = "Boka dina biljetter idag";
+            ViewData["Message"] = "Boka dina biljetter idag!";
 
 			var filmLista = _context.Film.ToList(); 
 			var biljettLista = _context.Biljett.ToList();
@@ -36,11 +36,6 @@ namespace BerrasBio.Controllers
 			BokaViewModel model = new BokaViewModel();
 			model.FilmLista = filmLista;
 			model.BiljettLista = biljettLista;
-
-			//var LINQ = from b in biljettLista    //klumpa och sortera ihop filmId
-			//		   group b by b.FilmId into film
-			//		   orderby film ascending
-			//		   select film;
 
 			return View(model);
         }
@@ -60,30 +55,5 @@ namespace BerrasBio.Controllers
 		{
 			return View();
 		}
-
-		[HttpGet]
-		public ActionResult Create(Biljett biljettId)
-		{
-			if (ModelState.IsValid)
-			{
-				_context.Biljett.Add(biljettId);
-				_context.SaveChanges();
-				//return View("Boka", new { id = biljettId.Bokad });
-			}
-			return View(biljettId);
-		}
-
-		//public ActionResult Submit()
-		//{
-		//	string output = "Nu har du bokat biljetter.";
-		//	ViewData["output"] = output;
-
-		//	if (ModelState.IsValid)
-		//	{
-		//		//do something with account
-		//		return RedirectToAction("Index");
-		//	}
-		//	return View(output);
-		//}
 	}
 }

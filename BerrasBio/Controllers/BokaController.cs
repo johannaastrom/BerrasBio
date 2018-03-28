@@ -49,7 +49,6 @@ namespace BerrasBio.Controllers
 			}
 			else
 			{
-				//var biljettLista = _context.Biljett.Where(b => b.FilmId == model.SelectedFilmId && !b.Bokad).ToList();
 				for (int i = 0; i < model.AntalBiljetter; i++)
 				{
 					var biljettOld = _context.Biljett.Where(b => !b.Bokad && b.FilmId == model.SelectedFilmId).First();

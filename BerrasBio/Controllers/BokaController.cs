@@ -21,11 +21,12 @@ namespace BerrasBio.Controllers
 
 		public IActionResult Index()
 		{
-			ViewData["Message"] = "Boka dina biljetter idag";
+			ViewData["Message"] = "Boka dina biljetter idag!";
 
 			//if (ViewData["Message"] == "Det finns inte tillräckligt många lediga biljetter")
 			//{
-					//// fixa denna if sats så den fungerar.
+			//	// fixa denna if sats så den fungerar. den kommer tillbaka hit och startas om utan att skriva ut ett felmeddelande. antingen skapa ny vy, eller skriv ut ett nytt felmeddelande
+			//	ViewData["Message"] == "Det finns inte tillräckligt många lediga biljetter";
 			//}
 			var filmLista = _context.Film.ToList();
 			var biljettLista = _context.Biljett.ToList();
@@ -44,8 +45,9 @@ namespace BerrasBio.Controllers
 			var antal = _context.Biljett.Where(b => b.FilmId == model.SelectedFilmId && !b.Bokad).Count();
 			if (model.AntalBiljetter > antal)
 			{
-				ViewData["Message"] = "Det finns inte tillräckligt många lediga biljetter";
-				return RedirectToAction("Index");
+				//ViewData["Message"] = "Det finns inte tillräckligt många lediga biljetter";
+				return View("Felmeddelande");
+				//return RedirectToAction("Index");
 			}
 			else
 			{

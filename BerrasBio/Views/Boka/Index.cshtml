@@ -6,6 +6,8 @@
 
 <h3>@ViewData["Message"]</h3>
 
+<br />
+
 @using (Html.BeginForm("Boka", "Boka", FormMethod.Post))
 {
 
@@ -13,7 +15,7 @@
         <div class="col-md-3">
             <h4>Filmer och tid</h4>
 
-            <select asp-for="SelectedFilmId" asp-items="@(new SelectList(Model.FilmLista, "FilmId", "FilmTitel"))" onchange="GetAntalBiljetter()"></select>
+            <select asp-for="SelectedFilmId" style="height:30px" asp-items="@(new SelectList(Model.FilmLista, "FilmId", "FilmTitel"))" onchange="GetAntalBiljetter()"></select>
 
         </div>
 
@@ -30,7 +32,7 @@
         <div class="col-md-3">
             <h4>Antal Biljetter</h4>
 
-            <input asp-for="@Model.AntalBiljetter" style="width:40px" id="regex" runat="server"/>
+            <input asp-for="@Model.AntalBiljetter" style="width:40px" style="height:30px" id="regex" runat="server"/>
             <asp:RegularExpressionValidator ID="regex" runat="server"
                                             ErrorMessage="Vänligen ange en siffra."
                                             ControlToValidate="regex"
@@ -41,7 +43,7 @@
         <div class="col-md-3">
             <h4>Bekräfta</h4>
 
-            <input type="submit" value="Boka" class="btn btn-default" />
+            <input type="submit" style="height:30px "value="Boka" class="btn btn-default" />
 
         </div>
     </div>

@@ -34,11 +34,11 @@ namespace BerrasBio.Data
 
 			var filmer = new Film[]
 			{
-			new Film{FilmTitel="Sagan om ringen 17:00" },
-			new Film{FilmTitel="Harry Potter 18:30" },
-			new Film{FilmTitel="The Notebook 19:00" },
-			new Film{FilmTitel="Ensam hemma 20:30" },
-			new Film{FilmTitel="Scary Movie 22:00" }
+			new Film { FilmTitel = "Sagan om ringen 17:00" },
+			new Film { FilmTitel = "Harry Potter 18:30" },
+			new Film { FilmTitel = "The Notebook 19:00" },
+			new Film { FilmTitel = "Ensam hemma 20:30" },
+			new Film { FilmTitel = "Scary Movie 22:00" }
 			};
 			foreach (Film s in filmer)
 			{

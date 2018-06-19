@@ -38,6 +38,7 @@ namespace BerrasBio.Controllers
 		public ActionResult Boka(BokaViewModel model)
 		{
 			var antal = _context.Biljett.Where(b => b.FilmId == model.SelectedFilmId && !b.Bokad).Count();
+
 			if (model.AntalBiljetter > antal || model.AntalBiljetter < 0 )
 			{
 				return View("Felmeddelande");

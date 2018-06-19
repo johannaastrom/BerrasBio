@@ -12,7 +12,5 @@ namespace BerrasBio.Models
 		public List<Biljett> BiljettLista { get; set; }
 		public int SelectedFilmId { get; set; }
 		public int AntalBiljetter { get; set; }
-
-		//public int BokadePlatser { get; set; }
 	}
 }
